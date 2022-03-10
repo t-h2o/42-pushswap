@@ -19,6 +19,7 @@ DIR_SRC	=	./srcs
 SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_array.c	\
 			${DIR_SRC}/ps_print.c	\
+			${DIR_SRC}/ps_function.c
 
 
 
@@ -63,8 +64,7 @@ fclean:	clean
 re:		fclean all
 
 norm:
-	norminette ${SRCS}
-	norminette ${HEADER}
+	norminette ${DIR_INC}${HEADER} ${SRCS}
 
 lldb:
 	gcc ${SRCS} -I${DIR_INC} -g -o ${NAME}
