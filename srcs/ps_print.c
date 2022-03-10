@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:34:27 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/09 23:38:42 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/03/10 20:41:01 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ void
 		{
 			b.len--;
 			printf("\t%d\n", *b.ptr);
-			b.ptr++;
+			b.ptr--;
 		}
 		else
 			printf("\n");
 	}
+	printf("\n");
 }

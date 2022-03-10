@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:29:55 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/10 00:59:08 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/03/10 22:48:20 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,15 @@
 static int	ps_atoi(char *str, int *n)
 {
 	int	i;
+	int	neg;
 
 	i = 0;
+	neg = 1;
+	if (*str == '-')
+	{
+		str++;
+		neg = -1;
+	}
 	while (*str)
 	{
 		if (*str < '0' || *str > '9')
@@ -30,7 +37,7 @@ static int	ps_atoi(char *str, int *n)
 		i = *str - '0' + i * 10;
 		str++;
 	}
-	*n = i;
+	*n = i * neg;
 	return (0);
 }
 
@@ -58,8 +65,8 @@ static char
 /*	split the string by spaces
  *	give the arguments number in argc
  */
-static char
-	**splitarg(char *str, int *argc)
+char
+	**ps_splitarg(char *str, int *argc)
 {
 	char	**r;
 	int		line;
@@ -95,34 +102,22 @@ static char
 	return (r);
 }
 
-/*	set stack A with arguments
- *	split argument if one arguments
- */
+//	set stack A with arguments
+//	split argument if one arguments
 void
-	argv_to_array(int argc, char **argv, t_stack *a)
+	ps_argv_to_array(int argc, char **argv, t_stack *a)
 {
 	int	*num;
 	int	i;
 
-	if (argc == 2)
-		argv = splitarg(argv[1], &argc);
-	else
-		argv++;
 	num = (int *)malloc(sizeof(int) * --argc);
 	if (num == 0)
-	{
-		printf("push swap: error: malloc array\n");
-		exit(0);
-	}
+		ps_error("push swap: error: malloc array\n", "");
 	i = 0;
 	while (argv[i])
 	{
 		if (ps_atoi(argv[i], &(num[i])))
-		{
-			free(num);
-			printf("push swap: usage: there is not only digit\n");
-			exit(0);
-		}
+			ps_error("push swap: usage: there is not only digit\n", "f", num);
 		i++;
 	}
 	a->len = argc;

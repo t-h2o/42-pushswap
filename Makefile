@@ -19,6 +19,8 @@ DIR_SRC	=	./srcs
 SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_array.c	\
 			${DIR_SRC}/ps_print.c	\
+			${DIR_SRC}/ps_error.c	\
+			${DIR_SRC}/ps_scan.c	\
 			${DIR_SRC}/ps_function.c
 
 
