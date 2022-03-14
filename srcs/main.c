@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:43:27 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/10 22:53:57 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/03/14 16:56:06 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void
 	while (j < len)
 	{
 		i = 0;
-		pos = j;
+		pos = 0;
 		while (num[pos] < new)
 			pos++;
 		while (i < len)
@@ -41,11 +41,28 @@ static void
 	}
 	j = 0;
 	while (j < len)
-	{
 		num[j++] += 2147483648;
-	}
 }
 
+//	return 0 if there is not same number
+static int
+	check_same(int *num, int len)
+{
+	int	i;
+
+	while (len--)
+	{
+		i = len;
+		while (i--)
+			if (num[i] == num[len])
+				return (1);
+	}
+	return (0);
+}
+
+//	init stack A & B
+//	put the argument in an integer array
+//	A -> pointer on the top of the array
 static void
 	init_stack(t_stack *a, t_stack *b, int *argc, char **argv)
 {
@@ -59,7 +76,7 @@ static void
 	{
 		tab = ps_splitarg(argv[1], argc);
 		if (tab == 0 || *argc == 2)
-			ps_error("push swap: usage: need more than one number\n", "t", tab);
+			ps_error("push_swap: usage: need more than one number\n", "t", tab);
 		ps_argv_to_array(*argc, tab, a);
 		ps_free_tab(tab);
 	}
@@ -67,7 +84,7 @@ static void
 		ps_argv_to_array(*argc, &(argv[1]), a);
 }
 
-//	push swap
+//	push_swap
 int
 	main(int argc, char **argv)
 {
@@ -77,14 +94,16 @@ int
 
 	if (argc == 1)
 	{
-		printf("push swap: usage: put number\n");
+		printf("push_swap: usage: put number\n");
 		return (0);
 	}
 	init_stack(&a, &b, &argc, argv);
 	num = a.ptr;
+	if (check_same(num, a.len))
+		ps_error("push_swap: usage: same number\n", "f", num);
 	print_stack(a, b);
 	change_number(num, a.len);
 	print_stack(a, b);
-//	ps_scan(&a, &b);
+	ps_sort(&a, &b);
 	free(num);
 }
