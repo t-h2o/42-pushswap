@@ -1,6 +1,6 @@
 #	Compilation setting
 
-NAME	=	pushswap	
+NAME	=	push_swap	
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
@@ -21,6 +21,7 @@ SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_print.c	\
 			${DIR_SRC}/ps_error.c	\
 			${DIR_SRC}/ps_scan.c	\
+			${DIR_SRC}/ps_sort.c	\
 			${DIR_SRC}/ps_function.c
 
 
