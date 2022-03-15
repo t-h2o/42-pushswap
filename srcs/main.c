@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:43:27 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/14 16:56:06 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/15 19:27:11 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void
 	int	i;
 	int	pos;
 
-	new = -2147483648;
+	new = MININT;
 	j = 0;
 	while (j < len)
 	{
@@ -74,9 +74,7 @@ static void
 	b->ptr = 0;
 	if (*argc == 2)
 	{
-		tab = ps_splitarg(argv[1], argc);
-		if (tab == 0 || *argc == 2)
-			ps_error("push_swap: usage: need more than one number\n", "t", tab);
+		tab = ps_split(argv[1], argc);
 		ps_argv_to_array(*argc, tab, a);
 		ps_free_tab(tab);
 	}
@@ -101,9 +99,8 @@ int
 	num = a.ptr;
 	if (check_same(num, a.len))
 		ps_error("push_swap: usage: same number\n", "f", num);
-	print_stack(a, b);
 	change_number(num, a.len);
-	print_stack(a, b);
 	ps_sort(&a, &b);
+	print_stack(a, b);
 	free(num);
 }

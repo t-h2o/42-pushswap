@@ -6,7 +6,7 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:43:15 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/14 19:28:31 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/15 18:39:18 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ static void
 		ps_rotate(s);
 }
 
+//	push the two first number of A in B
+//	sort the three number in A
+//	pusb B in A
 static void
 	sort_five(t_stack *a, t_stack *b)
 {
@@ -56,7 +59,7 @@ static void
 	j = 0;
 	while (i--)
 	{
-		while (b->ptr[0] != a->ptr[0] + 1)
+		while ((b->ptr[0] + 1) % 5 != a->ptr[0])
 		{
 			ps_rotate(a);
 			j++;
@@ -70,34 +73,34 @@ static void
 		ps_reverse(a);
 }
 
-static int
-	check(t_stack *a, t_stack *b)
+int
+	ps_check(t_stack *a, t_stack *b)
 {
 	int	n;
 	int	i;
 
 	if (b->ptr)
-		return (0);
+		return (1);
 	i = 0;
 	n = a->ptr[i];
 	while (i + 1 < a->len)
 	{
 		n = a->ptr[i];
 		if (n > a->ptr[i + 1])
-			return (0);
+			return (1);
 		i++;
 	}
 	printf("SORT!\n");
-	return (1);
+	return (0);
 }
 
 void
 	ps_sort(t_stack *a, t_stack *b)
 {
-	check(a, b);
 	if (a->len == 3)
 		sort_three(a);
 	if (a->len == 5)
 		sort_five(a, b);
-	check(a, b);
+	if (a->len > 5)
+		ps_quick(a, b);
 }
