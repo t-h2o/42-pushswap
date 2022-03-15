@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:23:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/14 19:17:38 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/15 11:57:38 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSHSWAP_H
@@ -36,7 +36,7 @@ void	print_stack(t_stack a, t_stack b);
 
 //	ps_array.c
 void	ps_argv_to_array(int argc, char **argv, t_stack *a);
-char	**ps_splitarg(char *str, int *argc);
+char	**ps_split(char *str, int *argc);
 
 //	ps_function.c
 void	ps_push(t_stack *src, t_stack *dst);

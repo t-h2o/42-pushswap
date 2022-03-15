@@ -6,18 +6,18 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:29:55 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/14 16:42:37 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/15 11:55:55 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pushswap.h"
 
-/*	if the string is only digit
- *		return 0
- *	else
- *		return -1
- *	put the string valut in n
- */
+//	put string(str) value in number(n)
+//	if the string is only digit
+//		return 0
+//	else
+//		return -1
+//	put the string valut in n
 static int	ps_atoi(char *str, int *n)
 {
 	int	i;
@@ -41,82 +41,7 @@ static int	ps_atoi(char *str, int *n)
 	return (0);
 }
 
-/*	duplicate a string
- */
-static char
-	*strcopy(char *str, int start, int end)
-{
-	char	*r;
-	int		len;
-
-	len = end - start + 1;
-	r = (char *)malloc(len + 1);
-	if (r == 0)
-	{
-		printf("push_swap: error: malloc string\n");
-		exit(0);
-	}
-	r[len] = 0;
-	while (len--)
-		r[len] = str[start + len];
-	return (r);
-}
-
-static int
-	blank_char(char c)
-{
-	if (c == ' '
-		|| c == '\t'
-		|| c == '\n')
-		return (1);
-	return (0);
-}
-
-/*	split the string by spaces
- *	give the arguments number in argc
- */
-char
-	**ps_splitarg(char *str, int *argc)
-{
-	char	**r;
-	int		line;
-	int		start;
-	int		i;
-	int		j;
-
-	i = -1;
-	line = 1;
-	while (str[++i])
-	{
-		while (blank_char(str[i]))
-			i++;
-		line++;
-	}
-	*argc = line + 1;
-	r = (char **)malloc(sizeof(char *) * line + 1);
-	if (r == 0)
-		return (0);
-	r[line] = 0;
-	i = 0;
-	j = 0;
-	while (line--)
-	{
-		start = i;
-		while (blank_char(str[i]) && str[i])
-			i++;
-		r[j] = strcopy(str, start, i - 1);
-		if (r[j++] == 0)
-		{
-			free(r);
-			return (0);
-		}
-		i++;
-	}
-	return (r);
-}
-
 //	set stack A with arguments
-//	split argument if one arguments
 void
 	ps_argv_to_array(int argc, char **argv, t_stack *a)
 {

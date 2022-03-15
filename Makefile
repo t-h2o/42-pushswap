@@ -22,6 +22,7 @@ SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_error.c	\
 			${DIR_SRC}/ps_scan.c	\
 			${DIR_SRC}/ps_sort.c	\
+			${DIR_SRC}/ps_split.c	\
 			${DIR_SRC}/ps_function.c
 
 
@@ -72,3 +73,8 @@ norm:
 lldb:
 	gcc ${SRCS} -I${DIR_INC} -g -o ${NAME}
 	lldb ${NAME}
+
+visual:
+	make
+	cp push_swap push_swap_visualizer/
+	python3 push_swap_visualizer/pyviz.py 0 6 1 9 4 8 7 5 2 3
