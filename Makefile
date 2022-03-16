@@ -22,6 +22,7 @@ SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_error.c	\
 			${DIR_SRC}/ps_scan.c	\
 			${DIR_SRC}/ps_sort.c	\
+			${DIR_SRC}/ps_quick.c	\
 			${DIR_SRC}/ps_split.c	\
 			${DIR_SRC}/ps_function.c
 
