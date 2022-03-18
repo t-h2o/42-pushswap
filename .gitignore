@@ -1,2 +1,4 @@
 objs/
 push_swap
+push_swap.dSYM
+push_swap_visualizer

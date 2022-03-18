@@ -6,7 +6,7 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:43:15 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/15 18:39:18 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/18 19:21:41 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,42 @@ static void
 		ps_rotate(s);
 }
 
+static void
+	get_num(t_stack *s, int *min, int *pos, int n)
+{
+	int	i;
+
+	i = s->len;
+	*min = MAXINT;
+	while (i--)
+	{
+		if (s->ptr[i] == n)
+		{
+			*min = s->ptr[i];
+			*pos = i;
+			return ;
+		}
+	}
+	*pos = -1;
+}
+
+static void
+	get_min(t_stack *s, int *min, int *pos)
+{
+	int	i;
+
+	i = s->len;
+	*min = MAXINT;
+	while (i--)
+	{
+		if (s->ptr[i] < *min)
+		{
+			*min = s->ptr[i];
+			*pos = i;
+		}
+	}
+}
+
 //	push the two first number of A in B
 //	sort the three number in A
 //	pusb B in A
@@ -51,6 +87,8 @@ static void
 {
 	int	i;
 	int	j;
+	int	min;
+	int	pos;
 
 	ps_push(a, b);
 	ps_push(a, b);
@@ -59,18 +97,29 @@ static void
 	j = 0;
 	while (i--)
 	{
+		get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
+		if (pos == -1)
+		{
+			ps_swap(b);
+			get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
+		}
 		while ((b->ptr[0] + 1) % 5 != a->ptr[0])
 		{
-			ps_rotate(a);
-			j++;
+			if (pos > 2)
+				ps_reverse(a);
+			else
+				ps_rotate(a);
 		}
-		print_stack(*a, *b);
 		ps_push(b, a);
-		if (a->ptr[0] > a->ptr[1])
-			ps_swap(a);
 	}
-	while (j--)
-		ps_reverse(a);
+	get_min(a, &min, &pos);
+	while (a->ptr[0] != min)
+	{
+		if (pos > 2)
+			ps_reverse(a);
+		else
+			ps_rotate(a);
+	}
 }
 
 int
