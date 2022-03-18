@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:43:27 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/15 19:27:11 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/19 00:05:03 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ int
 		ps_error("push_swap: usage: same number\n", "f", num);
 	change_number(num, a.len);
 	ps_sort(&a, &b);
-	print_stack(a, b);
 	free(num);
 }
