@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:23:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/19 00:14:02 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/28 19:07:59 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSHSWAP_H
@@ -20,6 +20,7 @@
 //	define
 # define MAXINT 0x7fffffff
 # define MININT 0x80000000
+# define SHUNKS_NUMBER 10
 
 /*		ptr:
  *	pointer on a place of the int array
@@ -62,5 +63,17 @@ void	sort_three(t_stack *s);
 
 //	ps_quick.c
 void	ps_quick(t_stack *a, t_stack *b);
+int		get_max(t_stack *s);
+void	display_shunk(int shunk[SHUNKS_NUMBER][4]);
+void	midnum(t_stack *s, int shunk[SHUNKS_NUMBER][4], int n);
+
+//		ps_step_one.c
+void	step_one_init(t_stack *a, t_stack *b, int shunk[SHUNKS_NUMBER][4]);
+
+//		ps_step_two.c
+void	step_two_init(t_stack *a, t_stack *b, int shunk[SHUNKS_NUMBER][4]);
+
+//		ps_step_three.c
+void	step_three_init(t_stack *a, t_stack *b, int shunk[SHUNKS_NUMBER][4]);
 
 #endif /* PUSHSWAP_H */
