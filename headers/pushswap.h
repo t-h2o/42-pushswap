@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:23:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/29 13:44:50 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/29 15:25:10 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSHSWAP_H
@@ -66,13 +66,10 @@ void	ps_quick(t_stack *a, t_stack *b);
 int		get_max(t_stack *s);
 void	display_shunk(int shunk[SHUNKS_NUMBER][4]);
 
-//		ps_step_one.c
-void	step_one_init(t_stack *a, t_stack *b, int shunk[SHUNKS_NUMBER][4]);
+//	push_ab.c
+void	push_ab(t_stack *a, t_stack *b);
 
-//		ps_step_two.c
-void	step_two_init(t_stack *a, t_stack *b, int shunk[SHUNKS_NUMBER][4]);
-
-//		ps_step_three.c
-void	step_three_init(t_stack *a, t_stack *b, int shunk[SHUNKS_NUMBER][4]);
+//	push_ba.c
+void	push_ba(t_stack *a, t_stack *b);
 
 #endif /* PUSHSWAP_H */
