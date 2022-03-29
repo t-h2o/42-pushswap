@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:58:54 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/28 19:12:29 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/29 14:04:13 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ static void
 {
 	int	mid;
 
-	mid = shunk[0] / 4;
+	mid = shunk[0] / 8;
 	while (sort_stack(a) == 0)
 	{
 		ps_push(a, b);
-		if (b->ptr[0] > mid)
+		if (b->ptr[0] < mid)
 			ps_rotate(b);
 	}
+	while (b->ptr[-b->len + 1] < mid)
+		ps_reverse(b);
 }
 
 void

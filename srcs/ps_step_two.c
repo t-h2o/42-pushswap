@@ -6,13 +6,13 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:57:53 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/28 19:13:23 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/29 13:45:04 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pushswap.h"
 
-int
+static int
 	comp_sta(t_stack *s, int num)
 {
 	int	i;

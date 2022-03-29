@@ -6,34 +6,11 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:09:45 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/28 19:17:02 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/29 14:08:03 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pushswap.h"
-
-void
-	midnum(t_stack *s, int shunk[SHUNKS_NUMBER][4], int n)
-{
-	int	min;
-	int	max;
-	int	i;
-
-	i = s->len;
-	max = MININT;
-	min = MAXINT;
-	while (i--)
-	{
-		if (min > s->ptr[i])
-			min = s->ptr[i];
-		if (max < s->ptr[i])
-			max = s->ptr[i];
-	}
-	shunk[n][0] = max - min;
-	shunk[n][1] = ((max - min) / 2) + min;
-	shunk[n][2] = ((max - min) / 4) + min;
-	shunk[n][3] = min;
-}
 
 int
 	get_max(t_stack *s)
