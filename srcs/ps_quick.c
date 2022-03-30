@@ -6,7 +6,7 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:09:45 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/30 16:04:45 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:18:33 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,7 @@ int
 	return (0);
 }
 
-static void
-	sorttt(t_stack *a, t_stack *b)
-{
-	int	count;
-	int	max;
-	int	min;
-	int	mid;
-
-	min = MAXINT;
-	max = MININT;
-
-	count = 0;
-	while (s_sort(a, count))
-	{
-		if (a->ptr[count] > max)
-			max = a->ptr[count];
-		if (a->ptr[count] < min)
-			min = a->ptr[count];
-		count++;
-	}
-
-	mid = ((max - min) / 2) + min;
-
-	while (count--)
-	{
-		ps_push(a, b);
-		if (b->ptr[0] > mid)
-			ps_rotate(b);
-	}
-	while (b->ptr[-b->len + 1] != 0)
-		ps_reverse(b);
-
-}
-
-static void
+void
 	midnum(t_stack *s, int *mid, int *sub)
 {
 	int	min;
@@ -86,6 +52,30 @@ static void
 	*sub = ((max - min) / 4) + min;
 }
 
+static void
+	push_ab_1(t_stack *a, t_stack *b)
+{
+	int	i;
+	int	mid;
+	int	sub;
+
+	midnum(a, &mid, &sub);
+	i = a->len;
+	while (i--)
+	{
+		if (a->ptr[0] < mid)
+		{
+			ps_push(a, b);
+			if (b->ptr[0] > sub)
+				ps_rotate(b);
+		}
+		else
+			ps_rotate(a);
+	}
+	while (b->ptr[-b->len + 1] > sub)
+		ps_reverse(b);
+}
+
 void
 	ps_quick(t_stack *a, t_stack *b)
 {
@@ -93,8 +83,8 @@ void
 	int	mid;
 	int	sub;
 
-	i = a->len;
 	midnum(a, &mid, &sub);
+	i = a->len;
 	while (i--)
 	{
 		if (a->ptr[0] < mid)
@@ -108,20 +98,13 @@ void
 	}
 
 	while (a->len != 3)
-		push_ab(a, b);
+		push_ab_1(a, b);
 	sort_three(a);
 
-	while (s_sort(b, 0))
-		push_ba(a, b);
-	ps_push(b, a);
-
-	sorttt(a,b);
-
-
-	while (a->ptr[0] + 1 == a->ptr[1] || a->ptr[1] + 1 == a->ptr[0])
+	while (a->ptr[0] - 1 == b->ptr[0] || a->ptr[0] - 1 == b->ptr[-1])
 	{
-		if (a->ptr[0] - 1 == a->ptr[1])
-			ps_swap(a);
-		ps_push(a, b);
+		if (b->ptr[0] < b->ptr[-1])
+			ps_swap(b);
+		ps_push(b, a);
 	}
 }
