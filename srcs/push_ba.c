@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 15:24:23 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/29 16:03:52 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/30 12:57:12 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void
 		ps_push(b, a);
 	}
 	midnum(b, &max, &mid, &sub);
-	while (comp_stack(b, mid))
+	while (comp_stack(b, mid) && s_sort(b, 0))
 	{
 		if (b->ptr[0] > mid)
 		{
