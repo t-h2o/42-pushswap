@@ -20,12 +20,10 @@ SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_array.c	\
 			${DIR_SRC}/ps_print.c	\
 			${DIR_SRC}/ps_error.c	\
-			${DIR_SRC}/ps_scan.c	\
 			${DIR_SRC}/ps_sort.c	\
+			${DIR_SRC}/step_one.c	\
 			${DIR_SRC}/ps_quick.c	\
 			${DIR_SRC}/ps_split.c	\
-			${DIR_SRC}/push_ab.c	\
-			${DIR_SRC}/push_ba.c	\
 			${DIR_SRC}/ps_function.c
 
 

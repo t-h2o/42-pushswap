@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:23:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/30 16:14:58 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:42:39 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSHSWAP_H
@@ -45,7 +45,7 @@ char	**ps_split(char *str, int *argc);
 
 //	ps_function.c
 void	ps_push(t_stack *src, t_stack *dst);
-void	ps_swap(t_stack *stack);
+void	ps_swap(t_stack *a, t_stack *b);
 void	ps_rotate(t_stack *stack);
 void	ps_reverse(t_stack *stack);
 
@@ -66,10 +66,7 @@ void	ps_quick(t_stack *a, t_stack *b);
 int		s_sort(t_stack *s, int n);
 void	midnum(t_stack *s, int *mid, int *sub);
 
-//	push_ab.c
-void	push_ab(t_stack *a, t_stack *b);
-
-//	push_ba.c
-void	push_ba(t_stack *a, t_stack *b);
+//	step_one.c
+void	step_one(t_stack *a, t_stack *b);
 
 #endif /* PUSHSWAP_H */

@@ -6,7 +6,7 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:43:15 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/19 00:13:50 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:47:06 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void
 		&& s->ptr[0] < s->ptr[2] && s->ptr[1] > s->ptr[2])
 	{
 		ps_reverse(s);
-		ps_swap(s);
+		ps_swap(s, 0);
 	}
 	else if (s->ptr[0] > s->ptr[1]
 		&& s->ptr[0] < s->ptr[2] && s->ptr[1] < s->ptr[2])
-		ps_swap(s);
+		ps_swap(s, 0);
 	else if (s->ptr[0] < s->ptr[1]
 		&& s->ptr[0] > s->ptr[2] && s->ptr[1] > s->ptr[2])
 		ps_reverse(s);
@@ -36,7 +36,7 @@ void
 		&& s->ptr[0] > s->ptr[2] && s->ptr[1] > s->ptr[2])
 	{
 		ps_rotate(s);
-		ps_swap(s);
+		ps_swap(s, 0);
 	}
 	else if (s->ptr[0] > s->ptr[1]
 		&& s->ptr[0] > s->ptr[2] && s->ptr[1] < s->ptr[2])
@@ -100,7 +100,7 @@ static void
 		get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
 		if (pos == -1)
 		{
-			ps_swap(b);
+			ps_swap(b, 0);
 			get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
 		}
 		while ((b->ptr[0] + 1) % 5 != a->ptr[0])

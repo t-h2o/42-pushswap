@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:37:35 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/30 17:18:41 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:45:41 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,34 @@ void
 
 //	swap the two 1st number
 void
-	ps_swap(t_stack *stack)
+	ps_swap(t_stack *a, t_stack *b)
 {
 	int	tmp;
 
-	if (stack->len < 2)
-		return ;
-	tmp = *stack->ptr;
-	*stack->ptr = (stack->ptr)[stack->dir];
-	(stack->ptr[stack->dir]) = tmp;
-	if (stack->dir == 1)
+	if (a && b)
+		write(1, "ss\n", 3);
+	else if (a)
 		write(1, "sa\n", 3);
-	else if (stack->dir == -1)
-		write(1, "sb\n", 3);
+	else if (b)
+		write(1, "sa\n", 3);
+	if (a)
+	{
+		if (2 < a->len)
+		{
+			tmp = *a->ptr;
+			*a->ptr = (a->ptr)[a->dir];
+			(a->ptr[a->dir]) = tmp;
+		}
+	}
+	if (b)
+	{
+		if (2 < b->len)
+		{
+			tmp = *b->ptr;
+			*b->ptr = (b->ptr)[b->dir];
+			(b->ptr[b->dir]) = tmp;
+		}
+	}
 }
 
 //	move the 1st number at the bottom
