@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:37:35 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/30 17:45:41 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/31 11:55:34 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void
 	else if (a)
 		write(1, "sa\n", 3);
 	else if (b)
-		write(1, "sa\n", 3);
+		write(1, "sb\n", 3);
 	if (a)
 	{
 		if (2 < a->len)
