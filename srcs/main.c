@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 22:43:27 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/19 00:05:03 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/01 20:03:15 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,21 @@ static void
 		ps_argv_to_array(*argc, &(argv[1]), a);
 }
 
+static int
+	sort_stack(t_stack *a)
+{
+	int	i;
+
+	i = 0;
+	while (i < a->len - 1)
+	{
+		if (a->ptr[i] + 1 != a->ptr[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 //	push_swap
 int
 	main(int argc, char **argv)
@@ -100,6 +115,8 @@ int
 	if (check_same(num, a.len))
 		ps_error("push_swap: usage: same number\n", "f", num);
 	change_number(num, a.len);
+	if (sort_stack(&a))
+		ps_error("push_swap: usage: good order\n", "f", num);
 	ps_sort(&a, &b);
 	free(num);
 }
