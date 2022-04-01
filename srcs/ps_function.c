@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:37:35 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/31 11:55:34 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:39:58 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,24 @@ void
 		write(1, "pb\n", 3);
 }
 
-//	swap the two 1st number
-void
-	ps_swap(t_stack *a, t_stack *b)
+static void
+	print_swap(t_stack *a, t_stack *b)
 {
-	int	tmp;
-
 	if (a && b)
 		write(1, "ss\n", 3);
 	else if (a)
 		write(1, "sa\n", 3);
 	else if (b)
 		write(1, "sb\n", 3);
+}
+
+//	swap the two 1st number
+void
+	ps_swap(t_stack *a, t_stack *b)
+{
+	int	tmp;
+
+	print_swap(a, b);
 	if (a)
 	{
 		if (2 < a->len)

@@ -6,7 +6,7 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:43:15 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:47:06 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/01 19:23:00 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,85 +41,6 @@ void
 	else if (s->ptr[0] > s->ptr[1]
 		&& s->ptr[0] > s->ptr[2] && s->ptr[1] < s->ptr[2])
 		ps_rotate(s);
-}
-
-static void
-	get_num(t_stack *s, int *min, int *pos, int n)
-{
-	int	i;
-
-	i = s->len;
-	*min = MAXINT;
-	while (i--)
-	{
-		if (s->ptr[i] == n)
-		{
-			*min = s->ptr[i];
-			*pos = i;
-			return ;
-		}
-	}
-	*pos = -1;
-}
-
-static void
-	get_min(t_stack *s, int *min, int *pos)
-{
-	int	i;
-
-	i = s->len;
-	*min = MAXINT;
-	while (i--)
-	{
-		if (s->ptr[i] < *min)
-		{
-			*min = s->ptr[i];
-			*pos = i;
-		}
-	}
-}
-
-//	push the two first number of A in B
-//	sort the three number in A
-//	pusb B in A
-static void
-	sort_five(t_stack *a, t_stack *b)
-{
-	int	i;
-	int	j;
-	int	min;
-	int	pos;
-
-	ps_push(a, b);
-	ps_push(a, b);
-	sort_three(a);
-	i = 2;
-	j = 0;
-	while (i--)
-	{
-		get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
-		if (pos == -1)
-		{
-			ps_swap(b, 0);
-			get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
-		}
-		while ((b->ptr[0] + 1) % 5 != a->ptr[0])
-		{
-			if (pos > 2)
-				ps_reverse(a);
-			else
-				ps_rotate(a);
-		}
-		ps_push(b, a);
-	}
-	get_min(a, &min, &pos);
-	while (a->ptr[0] != min)
-	{
-		if (pos > 2)
-			ps_reverse(a);
-		else
-			ps_rotate(a);
-	}
 }
 
 int

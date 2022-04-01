@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:23:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/04/01 17:51:28 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:45:15 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSHSWAP_H
@@ -56,10 +56,13 @@ void	ps_free_tab(char **tab);
 //	ps_scan.c
 void	ps_scan(t_stack *a, t_stack *b);
 
-//	ps_sort.c
+//	sort_tree.c
 void	ps_sort(t_stack *a, t_stack *b);
 int		ps_check(t_stack *a, t_stack *b);
 void	sort_three(t_stack *s);
+
+//	sort_five.c
+void	sort_five(t_stack *a, t_stack *b);
 
 //	ps_quick.c
 void	ps_quick(t_stack *a, t_stack *b);

@@ -20,7 +20,8 @@ SRCS	=	${DIR_SRC}/main.c		\
 			${DIR_SRC}/ps_array.c	\
 			${DIR_SRC}/ps_print.c	\
 			${DIR_SRC}/ps_error.c	\
-			${DIR_SRC}/ps_sort.c	\
+			${DIR_SRC}/sort_three.c	\
+			${DIR_SRC}/sort_five.c	\
 			${DIR_SRC}/step_one.c	\
 			${DIR_SRC}/ps_quick.c	\
 			${DIR_SRC}/ps_split.c	\
@@ -44,7 +45,7 @@ ifeq ($(UNAME_S),Darwin)
 	@echo "It is mac os"
 endif
 
-RM		=	rm -f
+RM		=	rm -rf
 
 vpath %.c ${DIR_SRC}
 
@@ -61,7 +62,7 @@ ${DIR_OBJ} :
 	@mkdir -p ${DIR_OBJ}
 
 clean:
-	${RM} ${OBJS}
+	${RM} ${DIR_OBJ}
 
 fclean:	clean
 	${RM} ${NAME}
@@ -69,7 +70,8 @@ fclean:	clean
 re:		fclean all
 
 norm:
-	norminette ${DIR_INC}${HEADER} ${SRCS}
+	clear
+	(norminette ${DIR_INC}${HEADER} ${SRCS} | grep -v  OK\!) || true
 
 lldb:
 	gcc ${SRCS} -I${DIR_INC} -g -fsanitize=address -o ${NAME}
