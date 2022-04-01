@@ -4,7 +4,7 @@ NAME	=	push_swap
 
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-#OFLAGS	=	-fsanitize=address
+OFLAGS	+=	-fsanitize=address
 
 
 #	Headers
@@ -72,7 +72,7 @@ norm:
 	norminette ${DIR_INC}${HEADER} ${SRCS}
 
 lldb:
-	gcc ${SRCS} -I${DIR_INC} -g -o ${NAME}
+	gcc ${SRCS} -I${DIR_INC} -g -fsanitize=address -o ${NAME}
 	lldb ${NAME}
 
 visual:

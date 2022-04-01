@@ -6,7 +6,7 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:09:45 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/31 15:43:38 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/31 16:22:48 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,52 +52,27 @@ void
 	*sub = ((max - min) / 4) + min;
 }
 
-static int
-	stack_comp(t_stack *s, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i < s->len)
-	{
-		if (s->ptr[i * s->dir] > n)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 void
 	ps_quick(t_stack *a, t_stack *b)
 {
-	int	i;
-	int	part[NU];
-	int	two[NU];
-
-	i = 0;
-	while (i < NU)
-	{
-		two[i] = 0;
-		part[i++] = 0;
-	}
-
-	step_one(a, b, part);
-	while (a->ptr[0] - 1 == b->ptr[0] || a->ptr[0] - 1 == b->ptr[-1])
-	{
-		if (b->ptr[0] < b->ptr[-1])
-			ps_swap(0, b);
-		ps_push(b, a);
-	}
-
-	i = 0;
-	while (part[i] < b->len)
-		printf("-->%d\n", part[i++]);
-
-	int mid;
-
-	mid = (part[i] - part[i - 1]) / 2 + part[i - 1];
-	while (stack_comp(b, mid))
-		ps_push(b, a);
+	step_one(a, b);
+	
+//	while (a->ptr[0] - 1 == b->ptr[0] || a->ptr[0] - 1 == b->ptr[-1])
+//	{
+//		if (b->ptr[0] < b->ptr[-1])
+//			ps_swap(0, b);
+//		ps_push(b, a);
+//	}
+//
+//	i = 0;
+//	while (part[i] < b->len)
+//		printf("-->%d\n", part[i++]);
+//
+//	int mid;
+//
+//	mid = (part[i] - part[i - 1]) / 2 + part[i - 1];
+//	while (stack_comp(b, mid))
+//		ps_push(b, a);
 
 
 }

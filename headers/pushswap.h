@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:23:17 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/31 11:37:43 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/03/31 16:04:32 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSHSWAP_H
@@ -67,6 +67,6 @@ int		s_sort(t_stack *s, int n);
 void	midnum(t_stack *s, int *mid, int *sub);
 
 //	step_one.c
-void	step_one(t_stack *a, t_stack *b, int part[NU]);
+void	step_one(t_stack *a, t_stack *b);
 
 #endif /* PUSHSWAP_H */
