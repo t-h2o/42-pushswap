@@ -6,7 +6,7 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 17:21:29 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/04/01 19:40:56 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/02 01:12:00 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static void
 			min = s->ptr[i];
 		if (max < s->ptr[i])
 			max = s->ptr[i];
+	}
+	if (s->len > 100)
+	{
+		*mid = 70 + min;
+		*sub = 35 + min;
+		return ;
 	}
 	*mid = ((max - min) / 2) + min;
 	*sub = ((max - min) / 4) + min;

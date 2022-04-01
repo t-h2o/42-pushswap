@@ -71,13 +71,9 @@ re:		fclean all
 
 norm:
 	clear
-	(norminette ${DIR_INC}${HEADER} ${SRCS} | grep -v  OK\!) || true
+	@(norminette ${DIR_INC}${HEADER} ${SRCS} | grep -v  OK\!) || true
 
 lldb:
 	gcc ${SRCS} -I${DIR_INC} -g -fsanitize=address -o ${NAME}
 	lldb ${NAME}
 
-visual:
-	make
-	cp push_swap push_swap_visualizer/
-	python3 push_swap_visualizer/pyviz.py 0 6 1 9 4 8 7 5 2 3

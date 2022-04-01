@@ -1,60 +1,98 @@
-clear
+#!/bin/bash
+
+# OS SETTING ####################################################################
+
+UNAME=`uname -s`
+
+if [ $UNAME == "Linux" ]
+then
+	ECHO="echo -e"
+	TESTER=checker_linux
+fi
+
+if [ $UNAME == "Darwin" ]
+then
+	ECHO="echo"
+	TESTER=checker_Mac
+fi
+
+
+# MESSAGE ######################################################################
 
 message () {
+
 	echo 
-	echo "\t------------------------"
-	echo "\t\t$1"
-	echo "\t------------------------"
+	$ECHO "\t------------------------"
+	$ECHO "\t\t$1"
+	$ECHO "\t------------------------"
 	echo 
 }
 
+
+# CHECKER ######################################################################
+
 check_tree() {
+
 	echo 
-	echo "test $1\t`./push_swap $1 | wc -l` operation(s)"
-	./push_swap `echo $1` | ./checker_Mac `echo $1`
+	$ECHO "test $1\t`./push_swap $1 | wc -l` operation(s)"
+	RES=`./push_swap $1 | ./$TESTER $1`
+	echo -e "\t\t$RES"
 }
 
 check_five() {
+
 	echo
 	ARG=`ruby -e "puts (0...5).to_a.shuffle.join(' ')"`
 	echo TEST : $ARG
 	echo "test $ARG\t`./push_swap $ARG | wc -l` operation(s)"
 	./push_swap $ARG | wc -l
-	./push_swap `echo $ARG` | ./checker_Mac `echo $ARG`
+	RES=`./push_swap $ARG | ./$TESTER $ARG`
+	echo -e "\t\t$RES"
 }
 
-message "100 numbers"
+check_hundred() {
 
-ARG=`ruby -e "puts (0...100).to_a.shuffle.join(' ')"`
-./push_swap $ARG | wc -l
-./push_swap `echo $ARG` | ./checker_Mac `echo $ARG`
-
-
-
-message "500 numbers"
-
-ARG=`ruby -e "puts (0...500).to_a.shuffle.join(' ')"`
-./push_swap $ARG | wc -l
-./push_swap `echo $ARG` | ./checker_Mac `echo $ARG`
+	message "100 numbers"
+	ARG=`ruby -e "puts (0...100).to_a.shuffle.join(' ')"`
+	./push_swap $ARG | wc -l
+	RES=`./push_swap $ARG | ./$TESTER $ARG`
+	echo -e "\t\t$RES"
+}
 
 
+check_fhundred() {
+	
+	message "500 numbers"
+	ARG=`ruby -e "puts (0...500).to_a.shuffle.join(' ')"`
+	./push_swap $ARG | wc -l
+	RES=`./push_swap $ARG | ./$TESTER $ARG`
+	echo -e "\t\t$RES"
+}
 
-message "good order"
 
-./push_swap 1 2 3
-./push_swap 1 2 3 45 46 49 
+check_order () {
+
+	message "good order"
+	./push_swap 1 2 3
+	./push_swap 1 2 3 45 46 49 
+}
 
 
+# MAIN #########################################################################
 
+#	check 3
 message "3 numbers"
-
 check_tree "1 5 3"
 check_tree "2 1 3"  
 check_tree "2 3 1"
 check_tree "3 2 1"
 check_tree "3 1 2"
 
+#	check order
+check_order
 
-message "5 numbers"
+#	five hundred
+check_fhundred
 
-check_five
+#	check hundred
+check_hundred
