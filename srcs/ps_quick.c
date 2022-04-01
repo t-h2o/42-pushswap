@@ -6,73 +6,43 @@
 /*   By: tgrivel <tggrivel@student.42lausanne.ch>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:09:45 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/03/31 16:22:48 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/01 18:23:07 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pushswap.h"
 
-int
-	s_sort(t_stack *s, int n)
+static void
+	push_next(t_stack *s, int n)
 {
 	int	i;
 
-	if (n < 0 || s->len < n)
-		return (0);
-	if (s->len < 2)
-		return (0);
-	i = n;
-	while (i < s->len - 1)
+	i = 0;
+	if (s->ptr == 0)
+		return ;
+	while (i < s->len)
 	{
-		if (s->ptr[i * s->dir] != s->ptr[(i + 1) * s->dir] - s->dir)
-			return (1);
+		if (s->ptr[i * s->dir] == n)
+			break ;
 		i++;
 	}
-	return (0);
-}
-
-void
-	midnum(t_stack *s, int *mid, int *sub)
-{
-	int	min;
-	int	max;
-	int	i;
-
-	i = s->len;
-	max = MININT;
-	min = MAXINT;
-	while (i--)
-	{
-		if (min > s->ptr[i])
-			min = s->ptr[i];
-		if (max < s->ptr[i])
-			max = s->ptr[i];
-	}
-	*mid = ((max - min) / 2) + min;
-	*sub = ((max - min) / 4) + min;
+	if (i < s->len / 2)
+		while (s->ptr[0] != n)
+			ps_rotate(s);
+	if (i >= s->len / 2)
+		while (s->ptr[0] != n)
+			ps_reverse(s);
 }
 
 void
 	ps_quick(t_stack *a, t_stack *b)
 {
 	step_one(a, b);
-	
-//	while (a->ptr[0] - 1 == b->ptr[0] || a->ptr[0] - 1 == b->ptr[-1])
-//	{
-//		if (b->ptr[0] < b->ptr[-1])
-//			ps_swap(0, b);
-//		ps_push(b, a);
-//	}
-//
-//	i = 0;
-//	while (part[i] < b->len)
-//		printf("-->%d\n", part[i++]);
-//
-//	int mid;
-//
-//	mid = (part[i] - part[i - 1]) / 2 + part[i - 1];
-//	while (stack_comp(b, mid))
-//		ps_push(b, a);
-
-
+	sort_three(a);
+	while (b->len > 1)
+	{
+		push_next(b, a->ptr[0] - 1);
+		ps_push(b, a);
+	}
+	ps_push(b, a);
 }
