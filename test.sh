@@ -6,13 +6,11 @@ UNAME=`uname -s`
 
 if [ $UNAME == "Linux" ]
 then
-	ECHO="echo -e"
 	TESTER=checker_linux
 fi
 
 if [ $UNAME == "Darwin" ]
 then
-	ECHO="echo"
 	TESTER=checker_Mac
 fi
 
@@ -22,9 +20,9 @@ fi
 message () {
 
 	echo 
-	$ECHO "\t------------------------"
-	$ECHO "\t\t$1"
-	$ECHO "\t------------------------"
+	echo -e "\t------------------------"
+	echo -e "\t\t$1"
+	echo -e "\t------------------------"
 	echo 
 }
 
@@ -34,7 +32,7 @@ message () {
 check_tree() {
 
 	echo 
-	$ECHO "test $1\t`./push_swap $1 | wc -l` operation(s)"
+	echo -e "test $1\t`./push_swap $1 | wc -l` operation(s)"
 	RES=`./push_swap $1 | ./$TESTER $1`
 	echo -e "\t\t$RES"
 }
@@ -54,7 +52,7 @@ check_hundred() {
 
 	message "100 numbers"
 	ARG=`ruby -e "puts (0...100).to_a.shuffle.join(' ')"`
-	./push_swap $ARG | wc -l
+	echo -e "\t\t`./push_swap $ARG | wc -l` operations"
 	RES=`./push_swap $ARG | ./$TESTER $ARG`
 	echo -e "\t\t$RES"
 }
@@ -64,7 +62,7 @@ check_fhundred() {
 	
 	message "500 numbers"
 	ARG=`ruby -e "puts (0...500).to_a.shuffle.join(' ')"`
-	./push_swap $ARG | wc -l
+	echo -e "\t\t`./push_swap $ARG | wc -l` operations"
 	RES=`./push_swap $ARG | ./$TESTER $ARG`
 	echo -e "\t\t$RES"
 }
