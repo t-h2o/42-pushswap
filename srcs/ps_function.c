@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:37:35 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/04/01 18:39:58 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/02 01:59:21 by melogr@phy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void
 	print_swap(a, b);
 	if (a)
 	{
-		if (2 < a->len)
+		if (1 < a->len)
 		{
 			tmp = *a->ptr;
 			*a->ptr = (a->ptr)[a->dir];
@@ -68,7 +68,7 @@ void
 	}
 	if (b)
 	{
-		if (2 < b->len)
+		if (1 < b->len)
 		{
 			tmp = *b->ptr;
 			*b->ptr = (b->ptr)[b->dir];
