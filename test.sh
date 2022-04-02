@@ -88,6 +88,12 @@ check_tree "2 3 1"
 check_tree "3 2 1"
 check_tree "3 1 2"
 
+#	check 4
+message "4 numbers"
+check_tree "1 5 3 0"
+check_tree "9 0 3 2"  
+check_tree "2 5 3 1"  
+
 #	check order
 check_order
 
