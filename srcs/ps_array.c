@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:29:55 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/03/15 11:55:55 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/04/02 16:02:31 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 //	put the string valut in n
 static int	ps_atoi(char *str, int *n)
 {
-	int	i;
-	int	neg;
+	long	i;
+	int		neg;
+	int		min = MININT;
+	int		max = MAXINT;
 
 	i = 0;
 	neg = 1;
@@ -35,6 +37,8 @@ static int	ps_atoi(char *str, int *n)
 		if (*str < '0' || *str > '9')
 			return (-1);
 		i = *str - '0' + i * 10;
+		if (i < min || max < i)
+			return (-2);
 		str++;
 	}
 	*n = i * neg;
@@ -47,6 +51,7 @@ void
 {
 	int	*num;
 	int	i;
+	int	ret;
 
 	num = (int *)malloc(sizeof(int) * --argc);
 	if (num == 0)
@@ -54,8 +59,11 @@ void
 	i = 0;
 	while (argv[i])
 	{
-		if (ps_atoi(argv[i], &(num[i])))
+		ret = ps_atoi(argv[i], &(num[i])); 
+		if (ret == -1)
 			ps_error("push_swap: usage: there is not only digit\n", "f", num);
+		if (ret == -2)
+			ps_error("push_swap: usage: number over-range\n", "f", num);
 		i++;
 	}
 	a->len = argc;
