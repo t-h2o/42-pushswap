@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 23:29:55 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/04/02 16:02:31 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/05 16:35:44 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ static int	ps_atoi(char *str, int *n)
 {
 	long	i;
 	int		neg;
-	int		min = MININT;
-	int		max = MAXINT;
+	int		min;
+	int		max;
 
+	min = MININT;
+	max = MAXINT;
 	i = 0;
 	neg = 1;
 	if (*str == '-')
@@ -59,7 +61,7 @@ void
 	i = 0;
 	while (argv[i])
 	{
-		ret = ps_atoi(argv[i], &(num[i])); 
+		ret = ps_atoi(argv[i], &(num[i]));
 		if (ret == -1)
 			ps_error("push_swap: usage: there is not only digit\n", "f", num);
 		if (ret == -2)

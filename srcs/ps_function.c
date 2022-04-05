@@ -6,7 +6,7 @@
 /*   By: melogr@phy <melogr@phy.to>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 12:37:35 by melogr@phy        #+#    #+#             */
-/*   Updated: 2022/04/02 01:59:21 by melogr@phy       ###   ########.fr       */
+/*   Updated: 2022/04/05 16:36:08 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ static void
 {
 	if (a && b)
 		write(1, "ss\n", 3);
-	else if (a)
+	if (a && b)
+		return ;
+	if (a->dir == 1)
 		write(1, "sa\n", 3);
-	else if (b)
+	if (a->dir == -1)
 		write(1, "sb\n", 3);
 }
 

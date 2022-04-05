@@ -6,24 +6,22 @@
 /*   By: tgrivel <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:41:36 by tgrivel           #+#    #+#             */
-/*   Updated: 2022/04/01 19:35:48 by tgrivel          ###   ########.fr       */
+/*   Updated: 2022/04/05 16:29:40 by tgrivel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"pushswap.h"
 
 static void
-	get_num(t_stack *s, int *min, int *pos, int n)
+	get_num(t_stack *s, int *pos, int n)
 {
 	int	i;
 
 	i = s->len;
-	*min = MAXINT;
 	while (i--)
 	{
 		if (s->ptr[i] == n)
 		{
-			*min = s->ptr[i];
 			*pos = i;
 			return ;
 		}
@@ -67,14 +65,13 @@ static void
 static void
 	b_a_5(t_stack *a, t_stack *b)
 {
-	int	min;
 	int	pos;
 
-	get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
+	get_num(a, &pos, (b->ptr[0] + 1) % 5);
 	if (pos == -1)
 	{
 		ps_swap(b, 0);
-		get_num(a, &min, &pos, (b->ptr[0] + 1) % 5);
+		get_num(a, &pos, (b->ptr[0] + 1) % 5);
 	}
 	while ((b->ptr[0] + 1) % 5 != a->ptr[0])
 	{
