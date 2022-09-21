@@ -8,31 +8,37 @@ A stack is a stuct with a pointer and a lenght.
 I thinks it's an esier idea than the others dude...
 
 ```
-int	num[5] = {12, 5, 6, 1, 0};
+int	num[5] = {2, 5, 6, 1, 0};
 
 init:
 A -> pointer = num[0]
 A -> lenght = 5
+{2,  5,  6,  1,  0}
 [0] [1] [2] [3] [4]
  A--------------->
 
 push(A, B):
+{2,  5,  6,  1,  0}
 [0] [1] [2] [3] [4]
  B   A----------->
 
 push(A, B):
+{2,  5,  6,  1,  0}
 [0] [1] [2] [3] [4]
  <---B   A------->
 
+{2,  5,  6,  1,  0}
 [0] [1] [2] [3] [4]
  <---------------B
 
 push(B, A):
+{2,  5,  6,  1,  0}
 [0] [1] [2] [3] [4]
  <-----------B   A
 
 swap(B):
 swap number in [2] and [3]
+{2,  5,  1,  6,  0}
 [0] [1] [2] [3] [4]
  <-----------B   A
 ```
